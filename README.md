@@ -8,4 +8,4 @@ JS Script that saves form data occasionally to allow for replaying what the user
 
 # Preview
 
-(https://johnmurch.github.io/spyforms/index.html)[https://johnmurch.github.io/spyforms/index.html]
+[https://johnmurch.github.io/spyforms/index.html](https://johnmurch.github.io/spyforms/index.html)
