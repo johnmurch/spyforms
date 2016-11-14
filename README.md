@@ -9,3 +9,17 @@ JS Script that saves form data occasionally to allow for replaying what the user
 # Preview
 
 [https://johnmurch.github.io/spyforms/index.html](https://johnmurch.github.io/spyforms/index.html)
+
+
+## How to use
+
+Download Repo
+
+```
+$ git clone https://github.com/johnmurch/tome-spyforms.git
+```
+Setup Script
+
+** Currently I console.log(events) but stubbed out how an API would be called to save this data**
+
+See Example [https://johnmurch.github.io/spyforms/index.html](https://johnmurch.github.io/spyforms/index.html)
