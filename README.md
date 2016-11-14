@@ -8,7 +8,7 @@ JS Script that saves form data occasionally to allow for replaying what the user
 
 # Preview
 
-[https://johnmurch.github.io/spyforms/index.html](https://johnmurch.github.io/spyforms/index.html)
+[https://johnmurch.github.io/tome-spyforms/](https://johnmurch.github.io/tome-spyforms/)
 
 
 ## How to use
@@ -22,4 +22,4 @@ Setup Script
 
 ** Currently I console.log(events) but stubbed out how an API would be called to save this data**
 
-See Example [https://johnmurch.github.io/spyforms/index.html](https://johnmurch.github.io/spyforms/index.html)
+See Example [https://johnmurch.github.io/tome-spyforms/](https://johnmurch.github.io/tome-spyforms/)
