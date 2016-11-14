@@ -105,7 +105,9 @@
             </div>
         </div>
     </div>
+    <!-- Without jQuery
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         var spyfrm_events = [];
@@ -151,7 +153,7 @@
                 if (spyfrm_i >= spyfrm_recording.length) {
                     return;
                 } else {
-                    $("[name*='" + spyfrm_recording[spyfrm_i].element + "']").val(spyfrm_recording[spyfrm_i].value);
+                    document.querySelector('[name="' + spyfrm_recording[spyfrm_i].element + '"]').value = spyfrm_recording[spyfrm_i].value
                     if (spyfrm_i != 0) {
                         // @HACK - only use if ALL events are ordered by ts
                         // var diff = recording[i].ts - recording[i - 1].ts;
