@@ -63,9 +63,9 @@
                 <div class="form-area">
                     <form role="form" id="frm" method="post">
                         <br style="clear:both">
-                        <h3 style="margin-bottom: 25px; text-align: center;">Just start typing below and we will be logging</h3>
+                        <h3 style="margin-bottom: 25px; text-align: center;">Just start typing and we will log</h3>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required autofocus>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
@@ -105,70 +105,11 @@
             </div>
         </div>
     </div>
-    <!-- Without jQuery
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    -->
+    <!-- -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        var spyfrm_events = [];
-        var spyfrm_transmit = (function() {
-            var spyfrm_gap = null;
-            return function upload() {
-                window.clearTimeout(spyfrm_gap);
-                spyfrm_gap = window.setTimeout(function() {
-                    console.log("EVENTS: ", JSON.stringify(spyfrm_events));
-                    document.getElementById('log').innerHTML = JSON.stringify(spyfrm_events);
-                    // $.post('/api/events', {
-                    //  events: spyfrm_events
-                    // });
-                    //events = [];
-                }, 500);
-            };
-        }());
-
-        var spyfrm_eventList = ['keyup','input']; //, 'change', 'paste',
-        for (spyfrm_event of spyfrm_eventList) {
-            document.body.addEventListener(spyfrm_event, function(e) {
-                if (e.target.name != undefined) {
-                    spyfrm_events.push({
-                        element: e.target.name,
-                        ts: (new Date()).getTime(),
-                        value: document.querySelector('[name="' + e.target.name + '"]').value
-                    });
-                }
-                window.setTimeout(function() {
-                    spyfrm_transmit();
-                }, 5);
-            }, false);
-        }
-
-        document.getElementById("play").addEventListener("click", function(e) {
-            document.getElementById("frm").reset();
-            var spyfrm_recording = JSON.parse(
-                JSON.stringify(spyfrm_events)
-            );
-            var spyfrm_i = 0;
-            var spyfrm_diff = 100; // time in ms between updates
-            function spyfrm_delayedLoop() {
-                if (spyfrm_i >= spyfrm_recording.length) {
-                    return;
-                } else {
-                    document.querySelector('[name="' + spyfrm_recording[spyfrm_i].element + '"]').value = spyfrm_recording[spyfrm_i].value
-                    if (spyfrm_i != 0) {
-                        // @HACK - only use if ALL events are ordered by ts
-                        // var diff = recording[i].ts - recording[i - 1].ts;
-                    }
-                    spyfrm_i++;
-                    window.setTimeout(spyfrm_delayedLoop, spyfrm_diff);
-                }
-            }
-            spyfrm_delayedLoop();
-        }, false);
-
-        document.getElementById("clear").addEventListener("click", function(e) {
-            document.getElementById('log').innerHTML = "";
-            spyfrm_events = [];
-        }, false);
+    <script src="spyform.js">
     </script>
 </body>
 
