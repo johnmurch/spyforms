@@ -1,17 +1,17 @@
 (function() {
     // Required for AJAX request to API
-    var spyfrm_events = [];
-    var spyfrm_transmit = (function() {
-        var spyfrm_gap = null;
+    var spyformEvents = [];
+    var spyformTransmit = (function() {
+        var spyformGap = null;
         return function upload() {
-            window.clearTimeout(spyfrm_gap);
-            spyfrm_gap = window.setTimeout(function() {
-                console.log("EVENTS: ", JSON.stringify(spyfrm_events));
-                document.getElementById('log').innerHTML = JSON.stringify(spyfrm_events);
+            window.clearTimeout(spyformGap);
+            spyformGap = window.setTimeout(function() {
+                console.log("EVENTS: ", JSON.stringify(spyformEvents));
+                document.getElementById('log').innerHTML = JSON.stringify(spyformEvents);
                 // $.post('/api/events', {
-                //  events: spyfrm_events
+                //  events: spyformEvents
                 // });
-                //events = [];
+                //spyformEvents = [];
             }, 500);
         };
     }());
@@ -21,26 +21,25 @@
     for (spyfrm_event of spyfrm_eventList) {
         document.body.addEventListener(spyfrm_event, function(e) {
             if (e.target.name != undefined) {
-                spyfrm_events.push({
+                spyformEvents.push({
                     element: e.target.name,
                     ts: (new Date()).getTime(),
                     value: document.querySelector('[name="' + e.target.name + '"]').value
                 });
             }
             window.setTimeout(function() {
-                spyfrm_transmit();
+                spyformTransmit();
             }, 5);
         }, false);
     }
 
     // PLAYBACK
     document.getElementById("play").addEventListener("click", function(e) {
-        document.forms[0].reset();
-        //     document.getElementById("frm").reset();
+        document.forms[0].reset(); // or document.getElementById("frm").reset();
         var spyfrm_recording = JSON.parse(
-            JSON.stringify(spyfrm_events)
+            JSON.stringify(spyformEvents)
         );
-        var spyfrm_i = 0;
+        var spyfrm_i = 0; // counter
         var spyfrm_diff = 100; // time in ms between updates
         function spyfrm_delayedLoop() {
             if (spyfrm_i >= spyfrm_recording.length) {
@@ -59,8 +58,8 @@
     }, false);
 
     // PLAYBACK - Clear Logs
-    document.getElementById("clear").addEventListener("click", function(e) {
-        document.getElementById('log').innerHTML = "";
-        spyfrm_events = [];
+    document.getElementById('clear').addEventListener('click', function(e) {
+        document.getElementById('log').innerHTML = '';
+        spyformEvents = [];
     }, false);
 })();
